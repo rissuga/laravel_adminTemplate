@@ -88,7 +88,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <h7>Nama Barang<span class="text-danger">*</span></h7>
+                    <h7>Nama Barangs<span class="text-danger">*</span></h7>
                     <div class="controls">
                       <input type="NamaBarang" name="NamaBarang"  class="form-control" required data-validation-required-message="This field is required">
                     </div>
