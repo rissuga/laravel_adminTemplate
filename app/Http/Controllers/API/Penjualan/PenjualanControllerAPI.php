@@ -14,7 +14,7 @@ class PenjualanControllerAPI extends Controller
     public function GetAll()
     {
         $data = DB::table('tb_penjualan')
-            ->orderBy('id', 'nama_barang')
+            ->orderBy('id', 'desc')
             ->get();
 
         return response()->json($data, 200);
@@ -26,8 +26,8 @@ class PenjualanControllerAPI extends Controller
             [
                 'id' => 'required',
                 'nama_barang' => 'required',
-                'jumlah' => 'jumlah',
-                'harga' => 'harga'
+                'jumlah' => 'required',
+                'harga' => 'required'
 
             ]
         );
@@ -41,14 +41,16 @@ class PenjualanControllerAPI extends Controller
 
         return response()->json($data, 201);
     }
+
+
     public function update(Request $request)
     {
         $validateData = $request->validate(
             [
                 'id' => 'required',
                 'nama_barang' => 'required',
-                'jumlah' => 'jumlah',
-                'harga' => 'harga'
+                'jumlah' => 'required',
+                'harga' => 'required'
 
             ]
         );
