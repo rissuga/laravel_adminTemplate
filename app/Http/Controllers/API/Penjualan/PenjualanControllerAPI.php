@@ -6,9 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Penjualan;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenjualanControllerAPI extends Controller
 {
+
+    public function GetAll()
+    {
+        $data = DB::table('tb_penjualan')
+            ->orderBy('id', 'nama_barang')
+            ->get();
+
+        return response()->json($data, 200);
+    }
 
     public function store(Request $request)
     {
@@ -51,5 +61,17 @@ class PenjualanControllerAPI extends Controller
         $data->save();
 
         return response()->json($data, 201);
+    }
+
+    public function destroy(Request $request)
+    {
+        $data = Penjualan::where('id', '=', $request->id)->first();
+
+        if (!empty($data)) {
+            $data->delete();
+            return response()->json($data, 200);
+        } else {
+            return response()->json(['eror' => 'data tidak ditemukan'], 404);
+        }
     }
 }
